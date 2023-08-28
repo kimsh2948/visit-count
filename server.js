@@ -1,5 +1,6 @@
 const express = require('express');
 const low = require('lowdb');
+const cors = require('cors');
 const FileSync = require('lowdb/adapters/FileSync');
 
 const app = express();
@@ -7,6 +8,7 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 app.use(express.json());
+app.use(cors());
 
 db.defaults({ visitors: 0 }).write();
 
